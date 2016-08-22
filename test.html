@@ -4,50 +4,50 @@
     <title>Web Speech API</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
-window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-var recognition = new webkitSpeechRecognition();
+	window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+	var recognition = new webkitSpeechRecognition();
 
-recognition.lang = 'ja';
-// 録音終了時トリガー
-// recognition.addEventListener('result', function(event){
-// 	console.log(event);
-//     var text = event.results.item(0).item(0).transcript;
-//     $("#result_text").val(text);
-// }, false);
+	recognition.lang = 'ja';
+	// 録音終了時トリガー
+	// recognition.addEventListener('result', function(event){
+	// 	console.log(event);
+	//     var text = event.results.item(0).item(0).transcript;
+	//     $("#result_text").val(text);
+	// }, false);
 
 
-var startTime;
+	var startTime;
 
-//連続してとる
-recognition.continuous = true;
-recognition.onresult = function(event) {
-	var currentTime = new Date();
-	//経過時間
-	var time = (currentTime - startTime)/1000;
-	var length = event.results.length;
-	if (length > 0) {
+	//連続してとる
+	recognition.continuous = true;
+	recognition.onresult = function(event) {
+		var currentTime = new Date();
+		//経過時間
+		var time = (currentTime - startTime)/1000;
+		var length = event.results.length;
+		if (length > 0) {
 
-		console.log(event.results[length-1][0].transcript);
-	    var text = event.results[length-1][0].transcript;
-    	$("#result_text").val(text);
-    	$("#result_time").val(time);
+			console.log(event.results[length-1][0].transcript);
+		    var text = event.results[length-1][0].transcript;
+	    	$("#result_text").val(text);
+	    	$("#result_time").val(time);
+		}
 	}
-}
 
 
-// 録音開始
-// recognition.start();
-function record()
-{
-    recognition.start();
-	startTime = new Date();
-	console.log(startTime);
-}
+	// 録音開始
+	// recognition.start();
+	function record()
+	{
+	    recognition.start();
+		startTime = new Date();
+		console.log(startTime);
+	}
 
-function stop()
-{
-	var currentTime = new Date();
-}
+	function stop()
+	{
+		var currentTime = new Date();
+	}
 </script>
 </head>
 
