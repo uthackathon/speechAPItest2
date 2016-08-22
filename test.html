@@ -15,13 +15,17 @@ recognition.lang = 'ja';
 //     $("#result_text").val(text);
 // }, false);
 
+
+var startTime;
+
 //連続してとる
 recognition.continuous = true;
 recognition.onresult = function(event) {
 	var length = event.results.length;
 	if (length > 0) {
 		var currentTime = new Date();
-		console.log(currentTime);
+		//経過時間
+		console.log((currentTime - startTime)/1000);
 		console.log(event.results[length-1][0].transcript);
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
@@ -33,15 +37,23 @@ recognition.onresult = function(event) {
 // recognition.start();
 function record()
 {
-    recognition.start();
-	var startTime = new Date();
+    // recognition.start();
+	startTime = new Date();
 	console.log(startTime);
+}
+
+function stop()
+{
+	var currentTime = new Date();
+	console.log((currentTime - startTime)/1000);
 }
 </script>
 </head>
 
+
 <body>
 <input type="button" onClick="record()" value="録音開始" />
+<input type="button" onClick="stop()" value="停止" />
 <br/>
 <textarea id="result_text" cols="100" rows="10">
 </textarea>
