@@ -7,13 +7,13 @@
 window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var recognition = new webkitSpeechRecognition();
 
-//連続して認識出るように
-recognition.continuous = true;
-
 recognition.lang = 'ja';
 
 // 録音終了時トリガー
 recognition.addEventListener('result', function(event){
+	//連続して認識出るように
+recognition.continuous = true;
+
     var text = event.results.item(0).item(0).transcript;
     $("#result_text").val(text);
 }, false);
