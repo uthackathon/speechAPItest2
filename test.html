@@ -25,10 +25,11 @@ recognition.onresult = function(event) {
 	if (length > 0) {
 		var currentTime = new Date();
 		//経過時間
-		console.log((currentTime - startTime)/1000);
+		var time = (currentTime - startTime)/1000;
 		console.log(event.results[length-1][0].transcript);
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
+    	$("#result_time").val(time);
 	}
 }
 
@@ -45,7 +46,6 @@ function record()
 function stop()
 {
 	var currentTime = new Date();
-	console.log((currentTime - startTime)/1000);
 }
 </script>
 </head>
@@ -53,11 +53,16 @@ function stop()
 
 <body>
 <input type="button" onClick="record()" value="録音開始" />
-<input type="button" onClick="stop()" value="停止" />
+<!-- <input type="button" onClick="stop()" value="停止" /> -->
 <br/>
 <textarea id="result_text" cols="100" rows="10">
 </textarea>
 <br />
+
+<br/>
+<textarea id="result_time" cols="10" rows="1">
+</textarea>
+s<br />
 
 </body>
 </html>
