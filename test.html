@@ -20,7 +20,7 @@
 
 	//連続してとる
 	recognition.continuous = true;
-	recognition.onstart = function(event) {
+	recognition.onresult = function(event) {
 		var currentTime = new Date();
 		//経過時間
 		var time = (currentTime - startTime)/1000;
@@ -30,10 +30,17 @@
 			console.log(event.results[length-1][0].transcript);
 		    var text = event.results[length-1][0].transcript;
 	    	$("#result_text").val(text);
-	    	$("#result_time").val(time);
+//	    	$("#result_time").val(time);
 		}
 	}
 
+	recognition.onstart = function() {
+  		console.log('Speech recognition service has started');
+  		var currentTime = new Date();
+		//経過時間
+		var time = (currentTime - startTime)/1000;
+	    	$("#result_time").val(time);
+	}
 
 	// 録音開始
 	// recognition.start();
