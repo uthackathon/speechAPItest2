@@ -20,7 +20,7 @@
 
 	//連続してとる
 	recognition.continuous = true;
-	recognition.onresult = function(event) {
+	recognition.onstart = function(event) {
 		var currentTime = new Date();
 		//経過時間
 		var time = (currentTime - startTime)/1000;
