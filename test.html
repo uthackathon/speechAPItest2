@@ -37,7 +37,12 @@
 	recognition.onstart = function() {
   		console.log('Speech recognition service has started');
 	}
-
+        
+        recognizer.onend = function(){
+        	console.log('On End');
+                recognizer.start();
+        }
+	
 	recognition.onspeechstart = function() {
   		console.log('Speech has been detected');
   		var currentTime = new Date();
