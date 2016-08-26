@@ -36,12 +36,15 @@
 
 	recognition.onstart = function() {
   		console.log('Speech recognition service has started');
+	}
+
+	recognition.onspeechstart = function() {
+  		console.log('Speech has been detected');
   		var currentTime = new Date();
 		//経過時間
 		var time = (currentTime - startTime)/1000;
 	    	$("#result_time").val(time);
 	}
-
 	// 録音開始
 	// recognition.start();
 	function record()
