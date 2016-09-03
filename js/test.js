@@ -12,7 +12,7 @@ var startTime;
 //連続してとる
 recognition.continuous = true;
 
-recognition.onresult = function(event) {
+recognition.onresult = function(event,$scope) {
 		console.log('Result');
 	var currentTime = new Date();
 	//経過時間
