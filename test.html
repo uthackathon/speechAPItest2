@@ -3,56 +3,12 @@
     <meta charset="UTF-8" />
     <title>Web Speech API</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script>
-	window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
-	var recognition = new webkitSpeechRecognition();
-
-	recognition.lang = 'ja';
-	// 録音終了時トリガー
-	// recognition.addEventListener('result', function(event){
-	// 	console.log(event);
-	//     var text = event.results.item(0).item(0).transcript;
-	//     $("#result_text").val(text);
-	// }, false);
-
-
-	var startTime;
-
-	//連続してとる
-	recognition.continuous = true;
-	recognition.onstart = function(event) {
-		var currentTime = new Date();
-		//経過時間
-		var time = (currentTime - startTime)/1000;
-		var length = event.results.length;
-		if (length > 0) {
-
-			console.log(event.results[length-1][0].transcript);
-		    var text = event.results[length-1][0].transcript;
-	    	$("#result_text").val(text);
-	    	$("#result_time").val(time);
-		}
-	}
-
-
-	// 録音開始
-	// recognition.start();
-	function record()
-	{
-	    recognition.start();
-		startTime = new Date();
-		console.log(startTime);
-	}
-
-	function stop()
-	{
-		var currentTime = new Date();
-	}
-</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="js/test.js"></script>
 </head>
 
 
-<body>
+<body ng-app>
 <input type="button" onClick="record()" value="録音開始" />
 <!-- <input type="button" onClick="stop()" value="停止" /> -->
 <br/>
