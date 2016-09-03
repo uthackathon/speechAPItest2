@@ -12,7 +12,7 @@ var startTime;
 //連続してとる
 recognition.continuous = true;
 
-recognition.onresult = function(event, $scope) {
+recognition.onresult = function(event) {
 		console.log('Result');
 	var currentTime = new Date();
 	//経過時間
@@ -23,9 +23,9 @@ recognition.onresult = function(event, $scope) {
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
     	
-		$scope.texts = [];
-    	$scope.texts.push(text);
-    	console.log($scope.texts);
+		// $scope.texts = [];
+  //   	$scope.texts.push(text);
+    	// console.log($scope.texts);
 //		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
@@ -37,10 +37,10 @@ recognition.onresult = function(event, $scope) {
 recognition.onstart = function() {
 		console.log('Speech recognition service has started');
 }
-    recognition.onend = function(){
-    	console.log('On End');
-            recognition.start();
-    }
+recognition.onend = function(){
+	console.log('On End');
+        recognition.start();
+}
 
 recognition.onaudiostart = function() {
 		console.log('Audio capturing started');
