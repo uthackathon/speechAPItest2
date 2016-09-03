@@ -12,8 +12,6 @@ var startTime;
 //連続してとる
 recognition.continuous = true;
 
-$scope.texts = [];
-
 recognition.onresult = function(event, $scope) {
 		console.log('Result');
 	var currentTime = new Date();
@@ -24,6 +22,8 @@ recognition.onresult = function(event, $scope) {
 		console.log(event.results[length-1][0].transcript);
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
+    	
+		$scope.texts = [];
     	$scope.texts.push(text);
     	console.log($scope.texts);
 //		recognition.stop();
