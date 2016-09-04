@@ -40,6 +40,10 @@ recognition.onresult = function(event,$scope,$apply) {
 
 function TextController($scope){
 	$scope.texts = texts;
+
+	$scope.refreshList = function(){
+		$scope.texts = texts;
+	};
 }
 
 
