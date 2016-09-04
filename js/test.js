@@ -21,6 +21,7 @@ recognition.onresult = function(event,$scope) {
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
    		object["text"] = text;
+   		$scope,texts = texts;
     	$scope.texts.splice(1,0,object);
     	console.log($scope.texts);
 
