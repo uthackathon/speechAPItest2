@@ -1,4 +1,3 @@
-
 window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja';
@@ -10,7 +9,7 @@ recognition.continuous = true;
 // var texts = [
 // 	{"time": "0.00", "text":"start"}
 // 	];
-var texts = [];
+var texts = [{"text":"start","time":"0.00"}];
 
 recognition.onresult = function(event,$scope) {
 		console.log('Result');
@@ -27,9 +26,9 @@ recognition.onresult = function(event,$scope) {
    		object["text"] = text;
    		object["time"] = elapsedTime;
 
-   		texts.splice(1,0,object);
+   		texts.splice(0,0,object);
     	console.log(texts);
-
+    	$scope.texts = texts;
 		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
@@ -37,6 +36,12 @@ recognition.onresult = function(event,$scope) {
 //	    	$("#result_time").val(time);
 	}
 }
+
+function TextController($scope){
+	$scope.texts = texts;
+}
+
+
 
 recognition.onstart = function() {
 		console.log('Speech recognition service has started');
