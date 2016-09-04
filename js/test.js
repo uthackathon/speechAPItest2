@@ -2,15 +2,12 @@
 window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja';
-// 録音終了時トリガー
-// recognition.addEventListener('result', function(event){
-// 	console.log(event);
-//     var text = event.results.item(0).item(0).transcript;
-//     $("#result_text").val(text);
-// }, false);
+
 var startTime;
 //連続してとる
 recognition.continuous = true;
+
+var texts = [];
 
 recognition.onresult = function(event,$scope) {
 		console.log('Result');
@@ -22,11 +19,10 @@ recognition.onresult = function(event,$scope) {
 		console.log(event.results[length-1][0].transcript);
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
-    	
-		var texts = [];
+   
     	texts.push(text);
     	console.log(texts);
-    	
+
 		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
