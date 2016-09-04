@@ -23,9 +23,10 @@ recognition.onresult = function(event,$scope) {
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
     	
-		$scope.texts = [];
-    	$scope.texts.push(text);
-    	console.log($scope.texts);
+		var texts = [];
+    	texts.push(text);
+    	console.log(texts);
+    	
 		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
