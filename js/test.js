@@ -9,7 +9,7 @@ recognition.continuous = true;
 // var texts = [
 // 	{"time": "0.00", "text":"start"}
 // 	];
-var texts = [{"text":"start","time":"0.00"}];
+var texts = [];
 
 recognition.onresult = function(event,$scope) {
 		console.log('Result');
@@ -28,7 +28,7 @@ recognition.onresult = function(event,$scope) {
 
    		texts.splice(0,0,object);
     	console.log(texts);
-    	$scope.texts = texts;
+    	// $scope.texts = texts;
 		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
