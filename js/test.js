@@ -8,6 +8,7 @@ var startTime;
 recognition.continuous = true;
 
 var texts = [];
+var object = {};
 
 recognition.onresult = function(event,$scope) {
 		console.log('Result');
@@ -19,9 +20,9 @@ recognition.onresult = function(event,$scope) {
 		console.log(event.results[length-1][0].transcript);
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
-   
-    	texts.push(text);
-    	console.log(texts);
+   		object["text"] = text;
+    	$scope.texts.splice(1,0,object);
+    	console.log($scope.texts);
 
 		recognition.stop();
 		console.log('Speech recognition abort!');
@@ -63,11 +64,12 @@ recognition.onaudioend = function() {
 }
 
 recognition.onspeechstart = function() {
-		console.log('Speech has been detected');
-		var currentTime = new Date();
+	console.log('Speech has been detected');
+	var currentTime = new Date();
 	//経過時間
 	var time = (currentTime - startTime)/1000;
-    	$("#result_time").val(time);
+    $("#result_time").val(time);
+    object["time"] = time;
 }
 // 録音開始
 // recognition.start();
