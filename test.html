@@ -23,9 +23,11 @@
 <textarea id="result_time" cols="10" rows="1">
 </textarea>
 s<br />
-
+<br/>
+<br/>
 
 <table ng-controller = "TextController">
+<button ng-click = "refreshList()">更新</button>
 	<tr ng-repeat = "text in texts">
 		<td>{{text.text}}</td>
 		<td>{{text.time}}</td>
@@ -34,7 +36,5 @@ s<br />
 		<p>{{test}}</p>
 	</li> -->
 </table>
-<button ng-click = "refreshList()">更新</button>
-
 </body>
 </html>
