@@ -1,4 +1,3 @@
-function TextController($scope){
 window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja';
@@ -38,9 +37,9 @@ recognition.onresult = function(event,$scope) {
 	}
 }
 
-// function TextController($scope){
-// 	$scope.texts = texts;
-// }
+function TextController($scope){
+	$scope.texts = texts;
+}
 
 
 
@@ -95,6 +94,4 @@ function record()
 function stop()
 {
 	var currentTime = new Date();
-}
-
 }
