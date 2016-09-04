@@ -7,7 +7,9 @@ var startTime;
 //連続してとる
 recognition.continuous = true;
 
-var texts = [];
+var texts = [
+	{"time": "0.00", "text":"start"}
+	];
 var object = {};
 
 recognition.onresult = function(event,$scope) {
