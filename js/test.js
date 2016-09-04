@@ -3,14 +3,14 @@ window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja';
 
-var startTime;
+var elapsedTime;
 //連続してとる
 recognition.continuous = true;
 
 var texts = [
 	{"time": "0.00", "text":"start"}
 	];
-var object = {};
+
 
 recognition.onresult = function(event,$scope) {
 		console.log('Result');
@@ -22,10 +22,11 @@ recognition.onresult = function(event,$scope) {
 		console.log(event.results[length-1][0].transcript);
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
-
     	
+    	var object = {};
    		object["text"] = text;
-   		console.log("object");
+   		object["time"] = elapsedTime;
+
    		texts.splice(1,0,object);
     	console.log(texts);
 
@@ -74,7 +75,8 @@ recognition.onspeechstart = function() {
 	//経過時間
 	var time = (currentTime - startTime)/1000;
     $("#result_time").val(time);
-    object["time"] = time;
+    elapsedTime = time;
+    
 }
 // 録音開始
 // recognition.start();
