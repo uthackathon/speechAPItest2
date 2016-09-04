@@ -1,14 +1,17 @@
-<html>
+<html ng-app>
 <head>
     <meta charset="UTF-8" />
     <title>Web Speech API</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <!-- <script src = "angular.js"></script> -->
     <script src="js/test.js"></script>
 </head>
 
 
-<body ng-app>
+<body>
+
+
 <input type="button" onClick="record()" value="録音開始" />
 <!-- <input type="button" onClick="stop()" value="停止" /> -->
 <br/>
@@ -20,6 +23,18 @@
 <textarea id="result_time" cols="10" rows="1">
 </textarea>
 s<br />
+<br/>
+<br/>
 
+<table ng-controller = "TextController">
+<button ng-click = "refreshList()">更新</button>
+	<tr ng-repeat = "text in texts">
+		<td>{{text.text}}</td>
+		<td>{{text.time}}</td>
+	</tr>
+<!-- 	<li ng-repeat = "test in tests">
+		<p>{{test}}</p>
+	</li> -->
+</table>
 </body>
 </html>

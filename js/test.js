@@ -1,20 +1,17 @@
-
 window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja';
-// 録音終了時トリガー
-// recognition.addEventListener('result', function(event){
-// 	console.log(event);
-//     var text = event.results.item(0).item(0).transcript;
-//     $("#result_text").val(text);
-// }, false);
-var startTime;
+
+var elapsedTime;
 //連続してとる
 recognition.continuous = true;
 
-$scope.texts = [];
+// var texts = [
+// 	{"time": "0.00", "text":"start"}
+// 	];
+var texts = [];
 
-recognition.onresult = function(event, $scope) {
+recognition.onresult = function(event,$scope) {
 		console.log('Result');
 	var currentTime = new Date();
 	//経過時間
@@ -24,9 +21,15 @@ recognition.onresult = function(event, $scope) {
 		console.log(event.results[length-1][0].transcript);
 	    var text = event.results[length-1][0].transcript;
     	$("#result_text").val(text);
-    	$scope.texts.push(text);
-    	console.log($scope.texts);
-//		recognition.stop();
+    	
+    	var object = {};
+   		object["text"] = text;
+   		object["time"] = elapsedTime;
+
+   		texts.splice(0,0,object);
+    	console.log(texts);
+    	// $scope.texts = texts;
+		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
 	
@@ -34,13 +37,23 @@ recognition.onresult = function(event, $scope) {
 	}
 }
 
+function TextController($scope){
+	$scope.texts = texts;
+
+	$scope.refreshList = function(){
+		$scope.texts = texts;
+	};
+}
+
+
+
 recognition.onstart = function() {
 		console.log('Speech recognition service has started');
 }
-    recognition.onend = function(){
-    	console.log('On End');
-            recognition.start();
-    }
+recognition.onend = function(){
+	console.log('On End');
+        recognition.start();
+}
 
 recognition.onaudiostart = function() {
 		console.log('Audio capturing started');
@@ -66,11 +79,13 @@ recognition.onaudioend = function() {
 }
 
 recognition.onspeechstart = function() {
-		console.log('Speech has been detected');
-		var currentTime = new Date();
+	console.log('Speech has been detected');
+	var currentTime = new Date();
 	//経過時間
 	var time = (currentTime - startTime)/1000;
-    	$("#result_time").val(time);
+    $("#result_time").val(time);
+    elapsedTime = time;
+    
 }
 // 録音開始
 // recognition.start();
