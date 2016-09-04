@@ -11,7 +11,7 @@ recognition.continuous = true;
 // 	];
 var texts = [];
 
-recognition.onresult = function(event,$scope,$apply) {
+recognition.onresult = function(event,$scope) {
 		console.log('Result');
 	var currentTime = new Date();
 	//経過時間
@@ -32,7 +32,6 @@ recognition.onresult = function(event,$scope,$apply) {
 		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
-	$scope.$apply();
 	
 //	    	$("#result_time").val(time);
 	}
