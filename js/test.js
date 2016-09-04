@@ -7,10 +7,10 @@ var elapsedTime;
 //連続してとる
 recognition.continuous = true;
 
-var texts = [
-	{"time": "0.00", "text":"start"}
-	];
-
+// var texts = [
+// 	{"time": "0.00", "text":"start"}
+// 	];
+var texts = [];
 
 recognition.onresult = function(event,$scope) {
 		console.log('Result');
