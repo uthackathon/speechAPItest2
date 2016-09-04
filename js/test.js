@@ -11,7 +11,7 @@ recognition.continuous = true;
 // 	];
 var texts = [];
 
-recognition.onresult = function(event,$scope) {
+recognition.onresult = function(event,$scope,$apply) {
 		console.log('Result');
 	var currentTime = new Date();
 	//経過時間
