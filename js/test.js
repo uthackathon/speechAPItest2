@@ -28,10 +28,11 @@ recognition.onresult = function(event,$scope) {
 
    		texts.splice(0,0,object);
     	console.log(texts);
-    	$scope.texts = texts;
+    	// $scope.texts = texts;
 		recognition.stop();
 		console.log('Speech recognition abort!');
 	recognition.stop();
+	$scope.$apply();
 	
 //	    	$("#result_time").val(time);
 	}
